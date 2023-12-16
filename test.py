@@ -2,7 +2,7 @@
 from datetime import datetime, timedelta
 from utils import *
 import pymongo
-from pymongo import UpdateOne
+#from pymongo import UpdateOne
 import psycopg2
 import psycopg2.extras
 import time
