@@ -6,3 +6,5 @@ channel = "stable-24_05"
 
 [deployment]
 run = ["sh", "-c", "run = \"echo 'Hello, Replit!'\""]
+
+print ("hi its Anna")
