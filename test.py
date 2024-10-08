@@ -1,7 +1,6 @@
 # I <3 mom
 #TESTING
 #rtrrfagd
-#ddddd
 from random import *
 from datetime import datetime, timedelta
 from utils import *
