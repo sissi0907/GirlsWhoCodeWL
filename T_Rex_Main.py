@@ -19,7 +19,8 @@ FPS = 30
 clock = pygame.time.Clock()
 
 # Game variables
-trex_pos = [50, SCREEN_HEIGHT - 100]  # T-Rex starting position
+trex_x = 50
+trex_y = SCREEN_HEIGHT - 100  # T-Rex starting y position
 trex_velocity = 0
 is_jumping = False
 is_ducking = False
@@ -31,8 +32,12 @@ score = 0
 high_score = 0
 
 def init_game():
-    global trex_pos, trex_velocity, is_jumping, is_ducking, background_x, obstacles, score
-    trex_pos = [50, SCREEN_HEIGHT - 100]
+    """
+    Initializes all game variables.
+    """
+    global trex_x, trex_y, trex_velocity, is_jumping, is_ducking, background_x, obstacles, score
+    trex_x = 50
+    trex_y = SCREEN_HEIGHT - 100
     trex_velocity = 0
     is_jumping = False
     is_ducking = False
@@ -41,6 +46,9 @@ def init_game():
     score = 0
 
 def show_start_screen():
+    """
+    Display the starting screen and wait for the player to press any key to begin.
+    """
     screen.fill(WHITE)
     font = pygame.font.SysFont(None, 48)
     text = font.render("Press any key to start", True, (0, 0, 0))
@@ -49,57 +57,63 @@ def show_start_screen():
     wait_for_key_press()
 
 def wait_for_key_press():
-    waiting = True
-    while waiting:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-            if event.type == pygame.KEYDOWN:
-                waiting = False
-
+    """
+    TODO: Wait for the player to press a key to proceed.
+    """
+    pass  
 def jump():
+    """
+    Handles T-Rex jumping mechanics.
+    Switches to jumping pose.
+    """
     global is_jumping, trex_velocity
-    is_jumping = True
-    trex_velocity = -jump_speed
+   #TODO: Jumping mechanics
 
 def duck():
-    global is_ducking, trex_pos
-    is_ducking = True
-    trex_pos[1] = SCREEN_HEIGHT - 75  # Adjust T-Rex position when ducking
+    """
+    Handles T-Rex ducking mechanics.
+    Switches to ducking pose.
+    """
+    #TODO: Ducking mechanics
 
 def update_trex():
-    global trex_pos, trex_velocity, is_jumping, is_ducking
-    if is_jumping:
-        trex_velocity += gravity
-        trex_pos[1] += trex_velocity
-        if trex_pos[1] >= SCREEN_HEIGHT - 100:  # Land on the ground
-            trex_pos[1] = SCREEN_HEIGHT - 100
-            is_jumping = False
-    
-    # Reset the T-Rex height when not ducking
-    if not is_ducking:
-        trex_pos[1] = SCREEN_HEIGHT - 100
-
+    """
+    Updates the T-Rex position and handles jumping/ducking logic.
+    """
+    global trex_y, trex_velocity, is_jumping, is_ducking
+    #TODO: Update jumping pos and not ducking pos
+   
 def update_background():
+    """
+    Updates the background scrolling effect.
+    """
     global background_x
-    background_x -= 5
-    if background_x <= -SCREEN_WIDTH:
-        background_x = 0
+    #TODO: background scrolling effect
 
 def draw_background():
+    """
+    Renders the background onto the screen.
+    """
     pygame.draw.rect(screen, (100, 100, 100), (background_x, 0, SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.draw.rect(screen, (100, 100, 100), (background_x + SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT))
 
 def update_obstacles():
-    # Add logic to spawn and move obstacles
-    pass
+    """
+    Manages obstacle spawning and movement.
+    """
+    #TODO: Create new obstacles and move
 
 def check_collisions():
-    # Add collision detection logic
+    """
+    Detects collisions between T-Rex and obstacles.
+    """
+   #TODO: Placeholder for collision detection logic
     pass
 
 def show_game_over():
+    """
+    Displays the game over screen and waits for key press to restart.
+    """
     screen.fill(WHITE)
     font = pygame.font.SysFont(None, 48)
     text = font.render("Game Over. Press any key to restart", True, (0, 0, 0))
@@ -108,6 +122,9 @@ def show_game_over():
     wait_for_key_press()
 
 def main_game():
+    """
+    Main game loop: handles input, updates game state, and renders.
+    """
     init_game()
     running = True
 
@@ -116,18 +133,7 @@ def main_game():
             if event.type == pygame.QUIT:
                 running = False
 
-        # Input handling directly in the main loop
-        keys = pygame.key.get_pressed()
-        
-        # Jumping logic
-        if keys[pygame.K_UP] and not is_jumping:
-            jump()
-        
-        # Ducking logic
-        if keys[pygame.K_DOWN]:
-            duck()
-        else:
-            is_ducking = False
+        #TODO: Handle jumping and ducking logic here
         
         update_trex()
         update_background()
@@ -142,9 +148,9 @@ def main_game():
         
         # Draw T-Rex (ducking or standing)
         if is_ducking:
-            pygame.draw.rect(screen, GREEN, (*trex_pos, 50, 25))  # Smaller size for ducking
+            pygame.draw.rect(screen, GREEN, (trex_x, trex_y, 50, 25))  # Smaller size for ducking
         else:
-            pygame.draw.rect(screen, GREEN, (*trex_pos, 50, 50))  # Normal size
+            pygame.draw.rect(screen, GREEN, (trex_x, trex_y, 50, 50))  # Normal size
 
         pygame.display.update()
         clock.tick(FPS)
@@ -154,3 +160,6 @@ show_start_screen()
 main_game()
 
 pygame.quit()
+
+
+
