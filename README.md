@@ -1,6 +1,8 @@
 W-L Girls Who Code Club
 Project 1: 
 **T-Rex Game**
+
+
 **Variables**:
 
 trex_pos: T-Rex's position (x, y) on the screen.
