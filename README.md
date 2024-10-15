@@ -4,6 +4,7 @@ Project 1:
 
 
 **Variables**
+
 trex_x, trex_y: T-Rex’s x and y positions.
 
 trex_velocity: Tracks T-Rex's vertical speed for jumping.
@@ -18,6 +19,7 @@ score, high_score: Track the player's score and best score.
 
 
 **Functions**
+
 init_game(): Initializes all game variables (T-Rex position, velocity, score, etc.).
 
 show_start_screen(): Displays the start screen and waits for the player to press any key.
@@ -43,6 +45,7 @@ show_game_over(): Displays the game-over screen and waits for a key press to res
 
 
 **Main Game Loop**
+
 Handles user inputs (jump, duck) directly in the loop.
 
 Updates T-Rex’s position and movement (through update_trex()).
